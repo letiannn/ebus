@@ -4,7 +4,7 @@ import os
 cwd = GetCurrentDir()
 group = []
 src = Glob('*.c')
-CPPPATH = [cwd]
+CPPPATH = [cwd, cwd + '/inc', cwd + '/src']
 
 if GetDepend('CCMP_USING_EXAMPLE_EBUS'):
     src += Glob('example/*.c')

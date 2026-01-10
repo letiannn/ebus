@@ -35,7 +35,8 @@ static void Node1Cb(eEbusEvtType_t evt, sEbusNode_t *node, sEbusMsgItem_t *msg, 
         sEbusNode_t *ack_node = (sEbusNode_t *)user_data;
         LOG_I("indication cb node name:%s wantack:%s evt:%x", node->name, ack_node->name, msg->evt_id);
         // 创建响应消息
-        sEbusMsgItem_t resp_msg = { 0 };
+        sEbusMsgItem_t resp_msg;
+        rt_memset(&resp_msg, 0, sizeof(resp_msg));
         resp_msg.evt_id = msg->evt_id;
         resp_msg.len = msg->len;
         rt_memcpy(resp_msg.data, msg->data, resp_msg.len);
@@ -70,7 +71,8 @@ static void Node2Cb(eEbusEvtType_t evt, sEbusNode_t *node, sEbusMsgItem_t *msg, 
         sEbusNode_t *ack_node = (sEbusNode_t *)user_data;
         LOG_I("indication cb node name:%s wantack:%s evt:%x", node->name, ack_node->name, msg->evt_id);
         // 创建响应消息
-        sEbusMsgItem_t resp_msg = { 0 };
+        sEbusMsgItem_t resp_msg;
+        rt_memset(&resp_msg, 0, sizeof(resp_msg));
         resp_msg.evt_id = msg->evt_id;
         resp_msg.len = msg->len;
         rt_memcpy(resp_msg.data, msg->data, resp_msg.len);
@@ -105,7 +107,8 @@ static void Node3Cb(eEbusEvtType_t evt, sEbusNode_t *node, sEbusMsgItem_t *msg, 
         sEbusNode_t *ack_node = (sEbusNode_t *)user_data;
         LOG_I("indication cb node name:%s wantack:%s evt:%x", node->name, ack_node->name, msg->evt_id);
         // 创建响应消息
-        sEbusMsgItem_t resp_msg = { 0 };
+        sEbusMsgItem_t resp_msg;
+        rt_memset(&resp_msg, 0, sizeof(resp_msg));
         resp_msg.evt_id = msg->evt_id;
         resp_msg.len = msg->len;
         rt_memcpy(resp_msg.data, msg->data, resp_msg.len);
@@ -140,7 +143,8 @@ static void Node4Cb(eEbusEvtType_t evt, sEbusNode_t *node, sEbusMsgItem_t *msg, 
         sEbusNode_t *ack_node = (sEbusNode_t *)user_data;
         LOG_I("indication cb node name:%s wantack:%s evt:%x", node->name, ack_node->name, msg->evt_id);
         // 创建响应消息
-        sEbusMsgItem_t resp_msg = { 0 };
+        sEbusMsgItem_t resp_msg;
+        rt_memset(&resp_msg, 0, sizeof(resp_msg));
         resp_msg.evt_id = msg->evt_id;
         resp_msg.len = msg->len;
         rt_memcpy(resp_msg.data, msg->data, resp_msg.len);
@@ -166,7 +170,8 @@ static void Node4Cb(eEbusEvtType_t evt, sEbusNode_t *node, sEbusMsgItem_t *msg, 
 
 static void thread1_entry(void *parameter)
 {
-    sEbusMsgItem_t rx_msg = { 0 };
+    sEbusMsgItem_t rx_msg;
+    rt_memset(&rx_msg, 0, sizeof(rx_msg));
     sEbusNode_t *node = (sEbusNode_t *)EbusNodeCreate(NODE11_NAME, Node1Cb);
     while (g_example_running)
     {
@@ -189,7 +194,8 @@ static void thread1_entry(void *parameter)
 
 static void thread2_entry(void *parameter)
 {
-    sEbusMsgItem_t rx_msg = { 0 };
+    sEbusMsgItem_t rx_msg;
+    rt_memset(&rx_msg, 0, sizeof(rx_msg));
     sEbusNode_t *node = (sEbusNode_t *)EbusNodeCreate(NODE22_NAME, Node2Cb);
     while (g_example_running)
     {
@@ -212,7 +218,8 @@ static void thread2_entry(void *parameter)
 
 static void thread3_entry(void *parameter)
 {
-    sEbusMsgItem_t rx_msg = { 0 };
+    sEbusMsgItem_t rx_msg;
+    rt_memset(&rx_msg, 0, sizeof(rx_msg));
     sEbusNode_t *node = (sEbusNode_t *)EbusNodeCreate(NODE33_NAME, Node3Cb);
     while (g_example_running)
     {
@@ -235,7 +242,8 @@ static void thread3_entry(void *parameter)
 
 static void thread4_entry(void *parameter)
 {
-    sEbusMsgItem_t tx_msg = { 0 };
+    sEbusMsgItem_t tx_msg;
+    rt_memset(&tx_msg, 0, sizeof(tx_msg));
 
     tx_msg.len = 8;
     rt_memset(tx_msg.data, 0x55, tx_msg.len);

@@ -121,7 +121,7 @@ void EbusCreate(void);
 
 void EbusDestory(void);
 
-sEbusNode_t *Ebus_NodeCreate(char *name, EbusCbPtr ackcb);
+sEbusNode_t *EbusNodeCreate(char *name, EbusCbPtr EvtCb);
 
 void EbusNodeDestory(sEbusNode_t *node);
 
